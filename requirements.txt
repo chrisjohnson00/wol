@@ -1,0 +1,14 @@
+certifi==2021.5.30
+chardet==4.0.0
+idna==2.10
+importlib-metadata==4.5.0
+jsonpickle==2.0.0
+kafka-python==2.0.2
+kme==0.1.1
+python-consul==1.1.0
+requests==2.25.1
+six==1.16.0
+typing-extensions==3.10.0.0
+urllib3==1.26.5
+wakeonlan==2.0.1
+zipp==3.4.1
