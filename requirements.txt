@@ -4,7 +4,7 @@ idna==2.10
 importlib-metadata==4.5.0
 jsonpickle==2.0.0
 kafka-python==2.0.2
-kme==0.1.1
+# kme==0.1.1
 python-consul==1.1.0
 requests==2.25.1
 six==1.16.0

@@ -6,8 +6,8 @@ COPY requirements.txt ./
 RUN pip install --upgrade pip && \
     pip install --no-cache-dir -r requirements.txt
 
-#    echo "temporary1" && pip install kafka-python jsonpickle && \
-#    pip install -i https://test.pypi.org/simple/ kme
+    echo "temporary1" && pip install kafka-python jsonpickle && \
+    pip install -i https://test.pypi.org/simple/ kme
 
 COPY . .
 
