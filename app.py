@@ -2,11 +2,12 @@ from wakeonlan import send_magic_packet  # https://pypi.org/project/wakeonlan/
 import socket
 import time
 from configurator.utility import get_config
-from kme import KMEMessage, KME
 import logging
+import redis
+import json
 
 
-def process_message(message: KMEMessage):
+def process_message(message):
     # message.message = { 'name': 'nfs2',
     #                     'mac_address': 'b8:ca:3a:5d:28:b8',
     #                     'ip': '192.168.1.132',
@@ -23,7 +24,7 @@ def process_message(message: KMEMessage):
         ready = is_open(message_body['ip'], message_body['port'])
         time.sleep(60)
     logging.info(f"{message_body['name']} is up and ready for business")
-    return KMEMessage(topic='')
+    return True
 
 
 def is_open(ip, port):
@@ -38,12 +39,28 @@ def is_open(ip, port):
 
 
 def main():
-    k_client = KME(bootstrap_servers=[get_config('KAFKA_BOOSTRAP_SERVER')])
-    logging.info(f"Subscribing to {get_config('KAFKA_TOPIC')}")
-    k_client.subscribe(get_config('KAFKA_TOPIC'), consumer_group='me', callback=process_message)
+    redis_conn = redis.Redis(host=get_config('REDIS_HOST'), charset="utf-8", decode_responses=True)
+    pubsub = redis_conn.pubsub()
+    pubsub.subscribe(get_config('REDIS_CHANNEL'))
+    logging.info(f"Subscribed to {get_config('REDIS_CHANNEL')}")
+    for message in pubsub.listen():
+        if message.get("type") == "message":
+            data = json.loads(message.get("data"))
+            logging.info(data)
+        logging.debug(message)
+
+
+def publish():
+    redis_conn = redis.Redis(host=get_config('REDIS_HOST'), charset="utf-8", decode_responses=True)
+    data = {
+        "message": "hello",
+    }
+    redis_conn.publish(get_config('REDIS_CHANNEL'), json.dumps(data))
+    logging.info(f"Message published to {get_config('REDIS_CHANNEL')}")
 
 
 if __name__ == '__main__':
     logging.basicConfig(level=logging.INFO)
     logging.info("Starting")
+    publish()
     main()
