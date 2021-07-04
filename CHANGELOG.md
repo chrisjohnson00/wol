@@ -1,5 +1,16 @@
 # Changelog
 
+## [v0.1.1](https://github.com/chrisjohnson00/wol/tree/v0.1.1) (2021-07-04)
+
+[Full Changelog](https://github.com/chrisjohnson00/wol/compare/v0.1.0...v0.1.1)
+
+**Merged pull requests:**
+
+- chore: bump python from 3.9.5-slim to 3.9.6-slim [\#8](https://github.com/chrisjohnson00/wol/pull/8) ([dependabot[bot]](https://github.com/apps/dependabot))
+- chore: bump wagoid/commitlint-github-action from 3.1.0 to 3.1.4 [\#5](https://github.com/chrisjohnson00/wol/pull/5) ([dependabot[bot]](https://github.com/apps/dependabot))
+- chore: bump charmixer/auto-changelog-action from 1.3 to 1.4 [\#3](https://github.com/chrisjohnson00/wol/pull/3) ([dependabot[bot]](https://github.com/apps/dependabot))
+- chore: bump actions/cache from 2.1.5 to 2.1.6 [\#2](https://github.com/chrisjohnson00/wol/pull/2) ([dependabot[bot]](https://github.com/apps/dependabot))
+
 ## [v0.1.0](https://github.com/chrisjohnson00/wol/tree/v0.1.0) (2021-06-25)
 
 [Full Changelog](https://github.com/chrisjohnson00/wol/compare/v0.0.0...v0.1.0)
