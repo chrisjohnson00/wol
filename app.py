@@ -4,7 +4,7 @@ import time
 from configurator.utility import get_config
 import logging
 import pulsar
-from json import loads, dumps
+from json import loads
 
 
 def process_message(message):
