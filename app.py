@@ -65,6 +65,7 @@ def main():
         try:
             # decode from bytes, encode with backslashes removed, decode back to a string, then load it as a dict
             message_body = loads(msg.data().decode().encode('latin1', 'backslashreplace').decode('unicode-escape'))
+            logger.info("New message", extra={'message_body': message_body})
             woke = process_message(message_body)
             if 'pulsar_completion_topic' in message_body and woke:
                 send_message(message_body, message_body['pulsar_completion_topic'])
