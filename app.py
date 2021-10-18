@@ -4,6 +4,7 @@ import time
 from configurator.utility import get_config
 import pygogo as gogo
 import pulsar
+from _pulsar import ConsumerType
 from json import loads, dumps
 
 # logging setup
@@ -55,7 +56,8 @@ def send_message(message, pulsar_topic):
 
 def main():
     client = pulsar.Client(f"pulsar://{get_config('PULSAR_SERVER')}")
-    consumer = client.subscribe(get_config('PULSAR_TOPIC'), get_config('PULSAR_SUBSCRIPTION'))
+    consumer = client.subscribe(get_config('PULSAR_TOPIC'), get_config('PULSAR_SUBSCRIPTION'),
+                                consumer_type=ConsumerType.Shared)
     logger.info(f"Subscribing to {get_config('PULSAR_TOPIC')}")
 
     while True:
