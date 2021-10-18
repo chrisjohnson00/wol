@@ -65,10 +65,13 @@ def main():
         try:
             # decode from bytes, encode with backslashes removed, decode back to a string, then load it as a dict
             message_body = loads(msg.data().decode().encode('latin1', 'backslashreplace').decode('unicode-escape'))
-            process_message(message_body)
-            if 'pulsar_completion_topic' in message_body:
+            woke = process_message(message_body)
+            if 'pulsar_completion_topic' in message_body and woke:
                 send_message(message_body, message_body['pulsar_completion_topic'])
-            consumer.acknowledge(msg)
+            if woke:
+                consumer.acknowledge(msg)
+            else:
+                consumer.negative_acknowledge(msg)
         except:  # noqa: E722
             # Message failed to be processed
             consumer.negative_acknowledge(msg)
