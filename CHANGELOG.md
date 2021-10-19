@@ -1,5 +1,13 @@
 # Changelog
 
+## [v1.0.0](https://github.com/chrisjohnson00/wol/tree/v1.0.0) (2021-10-19)
+
+[Full Changelog](https://github.com/chrisjohnson00/wol/compare/v0.1.1...v1.0.0)
+
+**Breaking changes:**
+
+- feat: converting from kafka to pulsar [\#32](https://github.com/chrisjohnson00/wol/pull/32) ([chrisjohnson00](https://github.com/chrisjohnson00))
+
 ## [v0.1.1](https://github.com/chrisjohnson00/wol/tree/v0.1.1) (2021-07-04)
 
 [Full Changelog](https://github.com/chrisjohnson00/wol/compare/v0.1.0...v0.1.1)
